@@ -1,0 +1,20 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="2022-09-23" author="ibrahimakh47@gmail.com">
+        <sql>
+            CREATE TYPE  library_management.position_type as Enum('BORROWED','NOT_BORROWED')
+        </sql>
+        <rollback>
+            <sql> DROP type if library_management.position_type;</sql>
+        </rollback>
+    </changeSet>
+
+
+</databaseChangeLog>

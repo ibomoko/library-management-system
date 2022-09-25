@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+
+        <changeSet id="2022-09-23-creation_admins_table" author="ibrahimakh47@gmail.com">
+            <createTable tableName="admins">
+                <column name="id" type="bigint" autoIncrement="true">
+                    <constraints primaryKey="true" nullable="false"/>
+                </column>
+                <column name="email" type="varchar(200)"/>
+                <column name="password" type="varchar(200)"/>
+                <column name="full_name" type="varchar(300)"/>
+                <column name="create_date" type="timestamp without time zone"/>
+                <column name="is_deleted" type="boolean"/>
+            </createTable>
+        </changeSet>
+
+
+        <changeSet id="2022-09-23-creation_books_table" author="ibrahimakh47@gmail.com">
+            <createTable tableName="books">
+
+                <column name="id" type="bigint" autoIncrement="true" >
+                    <constraints primaryKey="true" nullable="false"/>
+                </column>
+                <column name="full_name" type="varchar(300)"/>
+                <column name="create_date" type="timestamp without time zone"/>
+                <column name="position" type="library_management.position_type"/>
+                <column name="count" type="bigint"/>
+                <column name="is_deleted" type="boolean"/>
+
+            </createTable>
+
+
+        </changeSet>
+
+
+
+        <changeSet id="2022-09-23-creation_users_table" author="ibrahimakh47@gmail.com">
+            <createTable tableName="users">
+                <column name="id" type="bigint" autoIncrement="true">
+                    <constraints primaryKey="true" nullable="false"/>
+                </column>
+                <column name="full_name" type="varchar(300)"/>
+                <column name="email" type="varchar(200)"/>
+                <column name="password" type="varchar(200)"/>
+                <column name="create_date" type="timestamp without time zone"/>
+            </createTable>
+
+
+        </changeSet>
+
+
+
+        <changeSet id="2022-09-23-creation_librarians_table" author="ibrahimakh47@gmail.com">
+            <createTable tableName="librarians">
+                <column name="id" type="bigint" autoIncrement="true">
+                    <constraints primaryKey="true" nullable="false"/>
+                </column>
+                <column name="full_name" type="varchar(300)"/>
+                <column name="email" type="varchar(200)"/>
+                <column name="password" type="varchar(200)"/>
+                <column name="born_date" type="timestamp without time zone"/>
+                <column name="create_date" type="timestamp without time zone"/>
+                <column name="is_deleted" type="boolean"/>
+                <column name="admin_id" type="bigint"/>
+            </createTable>
+
+
+
+            <addForeignKeyConstraint baseTableName="librarians"
+                                     baseColumnNames="admin_id"
+                                     constraintName="fk_librarian_admins"
+                                     referencedTableName="admins"
+                                     referencedColumnNames="id"/>
+
+
+        </changeSet>
+
+        <changeSet id="2022-09-23-creation_borrowings_table" author="ibrahimakh47@gmail.com">
+            <createTable tableName="borrowings">
+                <column name="id" type="bigint" autoIncrement="true">
+                    <constraints primaryKey="true" nullable="false"/>
+                </column>
+                <column name="create_date" type="timestamp without time zone"/>
+                <column name="is_active" type="boolean"/>
+                <column name="end_date" type="timestamp without time zone"/>
+                <column name="librarian_id" type="bigint"/>
+                <column name="book_id" type="bigint"/>
+                <column name="user_id" type="bigint"/>
+            </createTable>
+
+            <addForeignKeyConstraint baseTableName="borrowings"
+                                     baseColumnNames="book_id"
+                                     constraintName="fk_borrowings_books"
+                                     referencedTableName="books"
+                                     referencedColumnNames="id"/>
+
+            <addForeignKeyConstraint baseTableName="borrowings"
+                                     baseColumnNames="librarian_id"
+                                     constraintName="fk_borrowings_librarians"
+                                     referencedTableName="librarians"
+                                     referencedColumnNames="id"/>
+
+            <addForeignKeyConstraint baseTableName="borrowings"
+                                     baseColumnNames="user_id"
+                                     constraintName="fk_borrowings_users"
+                                     referencedTableName="users"
+                                     referencedColumnNames="id"/>
+        </changeSet>
+
+
+</databaseChangeLog>
