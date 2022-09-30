@@ -19,3 +19,21 @@ spring:
     liquibase-schema: library_management
     enabled: true
     change-log: classpath:/db/changelog/changelog-master.xml
+
+
+security:
+  auth:
+    whitelist: >
+      /swagger-resources,
+      /swagger-resources/**,
+      /configuration/ui,
+      /configuration/security,
+      /swagger-ui.html,
+      /webjars/**,
+      /api/public/**,
+      /v3/api-docs/**,
+      /v3/api-docs,
+      /swagger-ui/**,
+      /v2/api-docs,
+      /api/admins,
+      /api

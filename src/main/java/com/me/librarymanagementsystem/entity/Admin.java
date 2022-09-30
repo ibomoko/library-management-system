@@ -35,7 +35,7 @@ public class Admin {
     private Date createDate;
 
     @Column(name = "is_deleted")
-    private Boolean is_deleted;
+    private Boolean isDeleted;
 
     @OneToMany(fetch =FetchType.LAZY ,mappedBy = "admin")
     private List<Librarian> librarians;
