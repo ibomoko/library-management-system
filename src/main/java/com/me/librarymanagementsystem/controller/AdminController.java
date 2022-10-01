@@ -5,10 +5,7 @@ import com.me.librarymanagementsystem.entity.Admin;
 import com.me.librarymanagementsystem.model.request.admin.AdminCreateRequest;
 import com.me.librarymanagementsystem.model.response.AdminCreateResponse;
 import com.me.librarymanagementsystem.service.AdminService;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +29,13 @@ public class AdminController {
     public ResponseEntity<List<AdminCreateResponse>>  getAdmins(){
         return ResponseEntity.ok(adminService.getAllAdmins());
     }
+
+    @GetMapping("/getAdminByEmail")
+    public Admin getAdminByEmail( @RequestParam String email){
+      return adminService.getAdminByEmail(email);
+    }
+
+
 
 
 }

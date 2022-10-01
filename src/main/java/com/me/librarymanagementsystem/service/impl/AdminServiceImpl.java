@@ -4,6 +4,8 @@ import com.me.librarymanagementsystem.config.PasswordEncoderConfig;
 import com.me.librarymanagementsystem.converter.admin.AdminConverter;
 import com.me.librarymanagementsystem.converter.admin.AdminResponseConverter;
 import com.me.librarymanagementsystem.entity.Admin;
+import com.me.librarymanagementsystem.error.exception.ResourceAlreadyExistException;
+import com.me.librarymanagementsystem.error.exception.ResourceNotFoundException;
 import com.me.librarymanagementsystem.model.request.admin.AdminCreateRequest;
 import com.me.librarymanagementsystem.model.response.AdminCreateResponse;
 import com.me.librarymanagementsystem.repository.AdminRepository;
@@ -27,6 +29,10 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public AdminCreateResponse createAdmin(AdminCreateRequest adminCreateRequest) {
 
+        adminRepository.findByEmailAndIsDeletedFalse(adminCreateRequest.getEmail()).ifPresent(admin ->
+        {throw new ResourceAlreadyExistException();
+        });
+
         Admin admin =adminConverter.apply(adminCreateRequest);
 
         admin.setPassword(passwordEncoder.encode(admin.getPassword()));
@@ -42,7 +48,8 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public AdminCreateResponse getAdminByEmail(String email) {
-        return null;
+    public Admin getAdminByEmail(String email) {
+        return adminRepository.findByEmailAndIsDeletedFalse(email).orElseThrow(() ->
+                new ResourceNotFoundException("Admin not found"));
     }
 }

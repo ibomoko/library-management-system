@@ -36,4 +36,4 @@ security:
       /swagger-ui/**,
       /v2/api-docs,
       /api/admins,
-      /api
+      /api/**

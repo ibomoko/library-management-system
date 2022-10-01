@@ -13,6 +13,6 @@ public interface AdminService {
 
         List<AdminCreateResponse> getAllAdmins();
 
-        AdminCreateResponse getAdminByEmail(String email);
+        Admin getAdminByEmail(String email);
 
 }
