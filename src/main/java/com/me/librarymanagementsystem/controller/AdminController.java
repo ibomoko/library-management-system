@@ -35,7 +35,10 @@ public class AdminController {
       return adminService.getAdminByEmail(email);
     }
 
-
+    @DeleteMapping("/deleteById{id}")
+      public void delete(@PathVariable Long id){
+      adminService.delete(id);
+    }
 
 
 }

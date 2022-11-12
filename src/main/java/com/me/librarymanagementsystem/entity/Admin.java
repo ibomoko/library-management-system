@@ -2,6 +2,8 @@ package com.me.librarymanagementsystem.entity;
 
 
 import lombok.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,6 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Table(name = "admins")
+@SQLDelete(sql = "UPDATE admins set is_deleted=true WHERE id=?")
+@Where(clause = "is_deleted=false")
 @Builder
 public class Admin {
 

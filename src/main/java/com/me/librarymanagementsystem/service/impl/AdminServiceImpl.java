@@ -52,4 +52,9 @@ public class AdminServiceImpl implements AdminService {
         return adminRepository.findByEmailAndIsDeletedFalse(email).orElseThrow(() ->
                 new ResourceNotFoundException("Admin not found"));
     }
+
+    @Override
+    public void delete(Long id) {
+        adminRepository.deleteById(id);
+    }
 }

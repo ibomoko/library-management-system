@@ -14,5 +14,6 @@ public interface AdminService {
         List<AdminCreateResponse> getAllAdmins();
 
         Admin getAdminByEmail(String email);
+        void delete(Long id);
 
 }
