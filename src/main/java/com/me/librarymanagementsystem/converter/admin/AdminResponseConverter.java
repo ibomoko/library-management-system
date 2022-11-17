@@ -1,7 +1,7 @@
 package com.me.librarymanagementsystem.converter.admin;
 
 import com.me.librarymanagementsystem.entity.Admin;
-import com.me.librarymanagementsystem.model.response.AdminCreateResponse;
+import com.me.librarymanagementsystem.model.response.admin.AdminCreateResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;

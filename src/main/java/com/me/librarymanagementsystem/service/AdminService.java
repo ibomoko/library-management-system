@@ -3,7 +3,7 @@ package com.me.librarymanagementsystem.service;
 
 import com.me.librarymanagementsystem.entity.Admin;
 import com.me.librarymanagementsystem.model.request.admin.AdminCreateRequest;
-import com.me.librarymanagementsystem.model.response.AdminCreateResponse;
+import com.me.librarymanagementsystem.model.response.admin.AdminCreateResponse;
 
 import java.util.List;
 

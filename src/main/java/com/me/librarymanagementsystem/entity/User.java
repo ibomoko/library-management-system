@@ -1,10 +1,9 @@
 package com.me.librarymanagementsystem.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -15,7 +14,8 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @RequiredArgsConstructor
-@Table
+@Table(name = "users")
+@Builder
 public class User {
 
     @Id

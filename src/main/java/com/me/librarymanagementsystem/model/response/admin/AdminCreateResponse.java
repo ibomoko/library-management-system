@@ -1,4 +1,4 @@
-package com.me.librarymanagementsystem.model.response;
+package com.me.librarymanagementsystem.model.response.admin;
 
 
 import lombok.Builder;

@@ -1,17 +1,15 @@
 package com.me.librarymanagementsystem.service.impl;
 
-import com.me.librarymanagementsystem.config.PasswordEncoderConfig;
 import com.me.librarymanagementsystem.converter.admin.AdminConverter;
 import com.me.librarymanagementsystem.converter.admin.AdminResponseConverter;
 import com.me.librarymanagementsystem.entity.Admin;
 import com.me.librarymanagementsystem.error.exception.ResourceAlreadyExistException;
 import com.me.librarymanagementsystem.error.exception.ResourceNotFoundException;
 import com.me.librarymanagementsystem.model.request.admin.AdminCreateRequest;
-import com.me.librarymanagementsystem.model.response.AdminCreateResponse;
+import com.me.librarymanagementsystem.model.response.admin.AdminCreateResponse;
 import com.me.librarymanagementsystem.repository.AdminRepository;
 import com.me.librarymanagementsystem.service.AdminService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
