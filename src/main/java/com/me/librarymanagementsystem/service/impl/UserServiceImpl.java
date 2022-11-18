@@ -5,6 +5,7 @@ import com.me.librarymanagementsystem.converter.user.UserConverter;
 import com.me.librarymanagementsystem.converter.user.UserResponseConverter;
 import com.me.librarymanagementsystem.entity.User;
 import com.me.librarymanagementsystem.error.exception.ResourceAlreadyExistException;
+import com.me.librarymanagementsystem.error.exception.ResourceNotFoundException;
 import com.me.librarymanagementsystem.model.request.user.UserCreateRequest;
 import com.me.librarymanagementsystem.model.response.user.UserCreateResponse;
 import com.me.librarymanagementsystem.repository.UserRepository;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +30,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserCreateResponse createUser(UserCreateRequest userCreateRequest) {
         userRepository.findByEmail(userCreateRequest.getEmail())
-                .ifPresent(admin->{ throw new ResourceAlreadyExistException();});
+                .ifPresent(user->{ throw new ResourceAlreadyExistException();});
 
         User user = userConverter.apply(userCreateRequest);
         user.setPassword(passwordEncoder.encode(userCreateRequest.getPassword()));
@@ -49,6 +51,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByEmail(String email) {
         return userRepository.getUserByEmail(email);
+    }
+
+    @Override
+    public void delete(Long id) {
+        userRepository.deleteUserById(id);
     }
 
 

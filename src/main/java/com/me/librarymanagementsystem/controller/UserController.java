@@ -11,8 +11,10 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,7 +25,7 @@ public class UserController {
 
 
      @PostMapping("/createUser")
-     public ResponseEntity<UserCreateResponse> createUser(@RequestBody UserCreateRequest userCreateRequest) {
+     public ResponseEntity<UserCreateResponse> createUser(@RequestBody @Valid UserCreateRequest userCreateRequest) {
          return ResponseEntity.ok(userService.createUser(userCreateRequest));
      }
 
@@ -42,6 +44,10 @@ public class UserController {
          return ResponseEntity.ok(userService.getUserByEmail(email));
     }
 
-
+    @DeleteMapping("/deleteById/{id}")
+    @Transactional
+    public void deleteUserById(@PathVariable Long id){
+         userService.delete(id);
+    }
 
 }

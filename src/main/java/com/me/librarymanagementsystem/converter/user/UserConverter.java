@@ -18,6 +18,7 @@ public class UserConverter implements Function<UserCreateRequest, User> {
                 .fullName(userCreateRequest.getFullname())
                 .email(userCreateRequest.getEmail())
                 .password(userCreateRequest.getPassword())
+                .isDeleted(false)
                 .createDate(new Date())
                 .build();
     }

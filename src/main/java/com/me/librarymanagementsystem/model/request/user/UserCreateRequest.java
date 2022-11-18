@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Data
 public class UserCreateRequest {
@@ -13,6 +14,7 @@ public class UserCreateRequest {
     public String fullname;
 
     @NotBlank(message = "Password required")
+    @Size(min = 8,message = "Password must be greater than or equal to 8 characters.")
     public String password;
 
     @NotBlank(message = "Email is mandatory")

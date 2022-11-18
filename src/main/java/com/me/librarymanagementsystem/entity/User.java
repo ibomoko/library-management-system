@@ -15,6 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Table(name = "users")
+@SQLDelete(sql = "UPDATE users set is_deleted=true WHERE id=?")
+@Where(clause = "is_deleted=false")
 @Builder
 public class User {
 
@@ -37,5 +39,8 @@ public class User {
 
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private List<Borrowing> borrowings;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
 
 }
