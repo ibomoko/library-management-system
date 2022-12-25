@@ -45,12 +45,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(Long id) {
-        return userRepository.getUserById(id);
+        return userRepository.getUserById(id).orElseThrow(()-> new ResourceNotFoundException("User not found with this id"));
     }
 
     @Override
     public User getUserByEmail(String email) {
-        return userRepository.getUserByEmail(email);
+        return userRepository.getUserByEmail(email).orElseThrow(()-> new ResourceNotFoundException("User not found with this email"));
     }
 
     @Override
