@@ -24,7 +24,6 @@ dependencies {
 	implementation 'org.apache.commons:commons-lang3:3.12.0'
 	implementation 'org.springframework.boot:spring-boot-starter-validation:2.7.3'
 	implementation 'org.springframework:spring-context-support:5.3.23'
-	implementation 'org.springframework.boot:spring-boot-starter-mail:2.7.3'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
