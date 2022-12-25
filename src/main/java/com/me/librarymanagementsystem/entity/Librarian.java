@@ -1,10 +1,7 @@
 package com.me.librarymanagementsystem.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Table(name = "librarians")
+@Builder
 public class Librarian {
 
 

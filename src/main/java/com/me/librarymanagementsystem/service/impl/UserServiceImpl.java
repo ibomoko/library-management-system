@@ -3,6 +3,7 @@ package com.me.librarymanagementsystem.service.impl;
 import com.me.librarymanagementsystem.config.PasswordEncoderConfig;
 import com.me.librarymanagementsystem.converter.user.UserConverter;
 import com.me.librarymanagementsystem.converter.user.UserResponseConverter;
+import com.me.librarymanagementsystem.entity.Admin;
 import com.me.librarymanagementsystem.entity.User;
 import com.me.librarymanagementsystem.error.exception.ResourceAlreadyExistException;
 import com.me.librarymanagementsystem.error.exception.ResourceNotFoundException;
@@ -56,6 +57,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(Long id) {
         userRepository.deleteUserById(id);
+    }
+
+    @Override
+    public void checkUserCredentials(String email, String password) {
+        User user= userRepository.findByEmailAndIsDeletedFalse(email)
+                .orElseThrow(()-> new ResourceNotFoundException("Resource not found with this email."));
+        if(passwordEncoder.matches(password,user.getPassword())){
+            return;
+        }
+        throw new RuntimeException("Password is invalid");
     }
 
 

@@ -13,6 +13,7 @@ public interface UserService {
     User getUserById(Long id);
     User getUserByEmail(String email);
     void delete(Long id);
+    void checkUserCredentials(String email,String password);
 
 
 

@@ -22,6 +22,8 @@ spring:
 
 
 security:
+  jwt:
+    secret: uranium
   auth:
     whitelist: >
       /swagger-resources,
@@ -37,3 +39,4 @@ security:
       /v2/api-docs,
       /api/admins,
       /api/**
+  

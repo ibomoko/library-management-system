@@ -15,5 +15,6 @@ public interface AdminService {
 
         Admin getAdminByEmail(String email);
         void delete(Long id);
+        void checkAdminCredentials(String email,String password);
 
 }

@@ -12,4 +12,8 @@ public class SecurityConstants {
     @Value("${security.auth.whitelist}")
     private String[] whitelist;
 
+    @Value("${security.jwt.secret}")
+    private String secretKey;
+
+
 }

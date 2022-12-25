@@ -55,4 +55,15 @@ public class AdminServiceImpl implements AdminService {
     public void delete(Long id) {
         adminRepository.deleteById(id);
     }
+
+    @Override
+    public void checkAdminCredentials(String email, String password) {
+       Admin admin = adminRepository.findByEmailAndIsDeletedFalse(email)
+               .orElseThrow(()-> new ResourceNotFoundException("Resource not found with this email."));
+       if(passwordEncoder.matches(password,admin.getPassword())){
+           return;
+       }
+       throw new RuntimeException("Password is invalid");
+    }
+
 }
