@@ -16,14 +16,14 @@ import java.util.Date;
 
 @Component
 
-public class JwtProvider {
+public class JWTProvider {
     private final SecurityConstants securityConstants;
     private final JWTVerifier jwtVerifier ;
 
-    public JwtProvider(SecurityConstants securityConstants) {
+    public JWTProvider(SecurityConstants securityConstants) {
         this.securityConstants=securityConstants;
         jwtVerifier= JWT
-                .require(Algorithm.HMAC512(securityConstants.getSecretKey()))
+                .require(Algorithm.HMAC512(securityConstants.getJwtSecretKey()))
                 .withSubject("jwt-token")
                 .withIssuer("library-management-system")
                 .build();
@@ -36,7 +36,7 @@ public class JwtProvider {
                 .withClaim("email",email)
                 .withClaim("role",role.toString())
                 .withIssuedAt(Instant.now())
-                .sign(Algorithm.HMAC512(securityConstants.getSecretKey()));
+                .sign(Algorithm.HMAC512(securityConstants.getJwtSecretKey()));
         }
 
         public UserClaims validateToken(String token){

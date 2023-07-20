@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 
-@RequestMapping("api/admin")
+@RequestMapping("v1/api/admins")
 @RestController
 @RequiredArgsConstructor
 public class AdminController {
@@ -25,17 +25,17 @@ public class AdminController {
         return ResponseEntity.ok(adminService.createAdmin(adminCreateRequest));
     }
 
-    @GetMapping("/getAdmins")
+    @GetMapping
     public ResponseEntity<List<AdminCreateResponse>>  getAdmins(){
         return ResponseEntity.ok(adminService.getAllAdmins());
     }
 
-    @GetMapping("/getAdminByEmail")
-    public Admin getAdminByEmail( @RequestParam String email){
+    @GetMapping("/{email}")
+    public Admin getAdminByEmail(@PathVariable String email){
       return adminService.getAdminByEmail(email);
     }
 
-    @DeleteMapping("/deleteById{id}")
+    @DeleteMapping("/{id}")
       public void delete(@PathVariable Long id){
       adminService.delete(id);
     }

@@ -13,7 +13,7 @@ public class SecurityConstants {
     private String[] whitelist;
 
     @Value("${security.jwt.secret}")
-    private String secretKey;
+    private String jwtSecretKey;
 
 
 }

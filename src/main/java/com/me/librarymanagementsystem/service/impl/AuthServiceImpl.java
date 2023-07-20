@@ -7,7 +7,7 @@ import com.me.librarymanagementsystem.enums.Role;
 import com.me.librarymanagementsystem.model.UserCredentials;
 import com.me.librarymanagementsystem.model.request.auth.LoginRequest;
 import com.me.librarymanagementsystem.model.response.auth.LoginResponse;
-import com.me.librarymanagementsystem.security.JwtProvider;
+import com.me.librarymanagementsystem.security.JWTProvider;
 import com.me.librarymanagementsystem.service.AdminService;
 import com.me.librarymanagementsystem.service.AuthService;
 import com.me.librarymanagementsystem.service.LibrarianService;
@@ -15,16 +15,13 @@ import com.me.librarymanagementsystem.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-
-import static com.me.librarymanagementsystem.enums.Role.ADMIN;
-
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
     private final UserService userService;
     private final AdminService adminService;
     private final LibrarianService librarianService;
-    private final JwtProvider jwtProvider;
+    private final JWTProvider jwtProvider;
 
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
@@ -62,7 +59,6 @@ public class AuthServiceImpl implements AuthService {
             case ADMIN -> adminService.checkAdminCredentials(loginRequest.getEmail(), loginRequest.getPassword());
             case USER -> userService.checkUserCredentials(loginRequest.getEmail(), loginRequest.getPassword());
             case LIBRARIAN -> librarianService.checkLibrarianCredentials(loginRequest.getEmail(), loginRequest.getPassword());
-
         }
 
     }
