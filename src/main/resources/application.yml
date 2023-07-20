@@ -23,7 +23,7 @@ spring:
 
 security:
   jwt:
-    secret: uranium
+    secret: ${LIBRARY_MANAGEMENT_JWT_SECRET}
   auth:
     whitelist: >
       /swagger-resources,
@@ -37,6 +37,6 @@ security:
       /v3/api-docs,
       /swagger-ui/**,
       /v2/api-docs,
-      /api/admins,
-      /api/**
-  
+      /api/v1/public/**,
+      /ws-registration/**,
+      /v1/api/auth/login
